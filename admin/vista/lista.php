@@ -21,8 +21,9 @@
                 <th>Foto</th>
                 <th>Nombre</th>
                 <th>Precio</th>
+                <th>Descripción</th> <!-- corregido -->
                 <th>Categoría</th>
-                <th>Operaciones</th> <!-- NUEVA COLUMNA -->
+                <th>Operaciones</th>
             </tr>
         </thead>
         <tbody>
@@ -38,6 +39,7 @@
                     </td>
                     <td><?= htmlspecialchars($prod['nombre']) ?></td>
                     <td>$<?= number_format($prod['precio'], 2) ?></td>
+                    <td><?= htmlspecialchars($prod['descripcion']) ?></td> <!-- corregido -->
                     <td><?= htmlspecialchars($prod['categoria']) ?></td>
                     <td>
                         <a class="op" href="index.php?action=editar&id=<?= $prod['id'] ?>">✏️ Editar</a>

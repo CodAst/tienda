@@ -25,6 +25,16 @@ CREATE TABLE usuarios (
     contrasena VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE productos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
+    foto VARCHAR(255),
+    categoria_id INT NOT NULL,
+    descripcion TEXT,
+    FOREIGN KEY (categoria_id) REFERENCES categoria(id)
+);
+
 -- Poblado incial de categorías
 INSERT INTO categoria (nombre) VALUES
 ('Tecnología'),

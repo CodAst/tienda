@@ -12,7 +12,7 @@ class ProductoDAO
 
     public function insertar($nombre, $precio, $descripcion, $foto, $categoria_id)
     {
-        $sql = "INSERT INTO productos (nombre, precio, descripción, foto, categoria_id) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO productos (nombre, precio, descripcion, foto, categoria_id) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->conexion->prepare($sql);
         return $stmt->execute([$nombre, $precio, $descripcion, $foto, $categoria_id]);
     }

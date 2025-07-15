@@ -24,6 +24,7 @@
                         <h3 class="card-title"><?= htmlspecialchars($producto['nombre']) ?></h3>
                         <p class="text-muted">Categoría: <?= htmlspecialchars($producto['categoria']) ?></p>
                         <h4 class="text-success">$<?= number_format($producto['precio'], 2) ?></h4>
+                        <p><strong>Descripción:</strong> <?= $producto['descripcion'] ?></p>
                         <p class="card-text mt-3">Este producto es parte del catálogo de nuestra tienda virtual. Puedes contactarnos para más detalles o realizar tu pedido.</p>
                     </div>
                 </div>
