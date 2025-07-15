@@ -20,6 +20,7 @@ class ProductoController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nombre = $_POST['nombre'];
             $precio = $_POST['precio'];
+            $descripcion = $_POST['descripcion'];
             $categoria_id = $_POST['categoria_id'];
 
             // Manejo del archivo subido
@@ -33,7 +34,7 @@ class ProductoController
                 }
             }
 
-            $this->modelo->insertar($nombre, $precio, $foto, $categoria_id);
+            $this->modelo->insertar($nombre, $precio, $descripcion, $foto, $categoria_id);
             header("Location: index.php?action=listar");
             exit();
         }
@@ -69,6 +70,7 @@ class ProductoController
             $id = $_POST['id'];
             $nombre = $_POST['nombre'];
             $precio = $_POST['precio'];
+            $descripcion = $_POST['descripcion'];
             $categoria_id = $_POST['categoria_id'];
 
             // 🔍 Traer los datos actuales del producto (incluye imagen)
@@ -88,7 +90,7 @@ class ProductoController
                 }
             }
 
-            $this->modelo->actualizar($id, $nombre, $precio, $foto, $categoria_id);
+            $this->modelo->actualizar($id, $nombre, $precio, $descripcion, $foto, $categoria_id);
             header("Location: index.php?action=listar");
             exit();
         } else {

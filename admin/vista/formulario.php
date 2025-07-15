@@ -16,6 +16,11 @@
         <label>Precio:</label><br>
         <input type="number" name="precio" step="0.01" required><br><br>
 
+        <div>
+            <label for="descripcion">Descripción:</label><br>
+            <textarea name="descripcion" rows="4" cols="50"><?= isset($producto) ? $producto['descripcion'] : '' ?></textarea>
+        </div>
+        
         <label>Foto del producto:</label><br>
         <input type="file" name="foto" accept="image/*"><br><br>
 

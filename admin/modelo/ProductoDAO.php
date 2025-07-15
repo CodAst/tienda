@@ -10,17 +10,17 @@ class ProductoDAO
         $this->conexion = Conexion::conectar();
     }
 
-    public function insertar($nombre, $precio, $foto, $categoria_id)
+    public function insertar($nombre, $precio, $descripcion, $foto, $categoria_id)
     {
-        $sql = "INSERT INTO productos (nombre, precio, foto, categoria_id) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO productos (nombre, precio, descripción, foto, categoria_id) VALUES (?, ?, ?, ?)";
         $stmt = $this->conexion->prepare($sql);
-        return $stmt->execute([$nombre, $precio, $foto, $categoria_id]);
+        return $stmt->execute([$nombre, $precio, $descripcion, $foto, $categoria_id]);
     }
 
 
     public function listar()
     {
-        $sql = "SELECT p.id, p.nombre, p.precio, p.foto, c.nombre AS categoria
+        $sql = "SELECT p.id, p.nombre, p.precio, p.descripcion, p.foto, c.nombre AS categoria
             FROM productos p
             INNER JOIN categoria c ON p.categoria_id = c.id
             ORDER BY p.id DESC";
@@ -55,7 +55,7 @@ class ProductoDAO
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function actualizar($id, $nombre, $precio, $foto, $categoria_id)
+    public function actualizar($id, $nombre, $precio, $descripcion, $foto, $categoria_id)
     {
         try {
             if ($foto) {
@@ -65,9 +65,9 @@ class ProductoDAO
                 $fotoAnterior = $stmt->fetchColumn();
 
                 // Actualizar incluyendo la nueva imagen
-                $sql = "UPDATE productos SET nombre = ?, precio = ?, foto = ?, categoria_id = ? WHERE id = ?";
+                $sql = "UPDATE productos SET nombre = ?, precio = ?, descripcion = ?, foto = ?, categoria_id = ? WHERE id = ?";
                 $stmt = $this->conexion->prepare($sql);
-                $resultado = $stmt->execute([$nombre, $precio, $foto, $categoria_id, $id]);
+                $resultado = $stmt->execute([$nombre, $precio, $descripcion, $foto, $categoria_id, $id]);
 
                 // Eliminar la imagen antigua si existe
                 if ($resultado && $fotoAnterior && file_exists("imagenes/$fotoAnterior")) {
@@ -78,7 +78,7 @@ class ProductoDAO
 
             } else {
                 // Actualizar sin tocar la imagen
-                $sql = "UPDATE productos SET nombre = ?, precio = ?, categoria_id = ? WHERE id = ?";
+                $sql = "UPDATE productos SET nombre = ?, precio = ?, descripcion = ?, categoria_id = ? WHERE id = ?";
                 $stmt = $this->conexion->prepare($sql);
                 return $stmt->execute([$nombre, $precio, $categoria_id, $id]);
             }

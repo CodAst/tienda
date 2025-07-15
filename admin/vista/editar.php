@@ -16,6 +16,11 @@
         <label>Precio:</label><br>
         <input type="number" name="precio" step="0.01" value="<?= $producto['precio'] ?>" required><br><br>
 
+        <div>
+            <label for="descripcion">Descripción:</label><br>
+            <textarea name="descripcion" rows="4" cols="50"><?= isset($producto) ? $producto['descripcion'] : '' ?></textarea>
+        </div>
+
         <label>Foto actual:</label><br>
         <?php if ($producto['foto']): ?>
             <img src="../imagenes/<?= htmlspecialchars($producto['foto']) ?>" width="100"><br>

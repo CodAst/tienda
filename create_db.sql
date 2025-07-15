@@ -25,7 +25,7 @@ CREATE TABLE usuarios (
     contrasena VARCHAR(255) NOT NULL
 );
 
--- Poblado inciial de categorías
+-- Poblado incial de categorías
 INSERT INTO categoria (nombre) VALUES
 ('Tecnología'),
 ('Moda'),
