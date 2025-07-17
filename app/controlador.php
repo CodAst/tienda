@@ -38,16 +38,3 @@ class Controller
     }
 }
 
-if ($_GET['action'] == 'agregar_carrito') {
-    session_start();
-    $usuario_id = $_SESSION['usuario_id']; // Asumiendo que ya manejas sesiones
-    $producto_id = $_POST['producto_id'];
-    $cantidad = $_POST['cantidad'];
-
-    require_once "modelo.php";
-    $modelo = new Modelo();
-    $modelo->agregarAlCarrito($usuario_id, $producto_id, $cantidad);
-
-    header("Location: carrito.php");
-    exit;
-}
