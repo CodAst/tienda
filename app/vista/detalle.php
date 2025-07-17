@@ -27,10 +27,15 @@
                         <p><strong>Descripción:</strong> <?= $producto['descripcion'] ?></p>
                         <p class="card-text mt-3">Este producto es parte del catálogo de nuestra tienda virtual. Puedes contactarnos para más detalles o realizar tu pedido.</p>
                     </div>
+                    <form action="controlador.php?action=agregar_carrito" method="POST">
+    <input type="hidden" name="producto_id" value="<?= $producto['id'] ?>">
+    <label for="cantidad">Cantidad:</label>
+    <input type="number" name="cantidad" value="1" min="1" required>
+    <button type="submit">Agregar al carrito 🛒</button>
+</form>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 </html>

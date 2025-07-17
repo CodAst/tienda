@@ -30,4 +30,20 @@ class ProductoDAO
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
+    public function agregarAlCarrito($usuario_id, $producto_id, $cantidad) {
+        $stmt = $this->conexion->prepare("SELECT id FROM carrito WHERE usuario_id = ? AND producto_id = ?");
+        $stmt->execute([$usuario_id, $producto_id]);
+        
+        if ($fila = $stmt->fetch()) {
+            // Ya está en el carrito → actualizar cantidad
+            $stmt = $this->conexion->prepare("UPDATE carrito SET cantidad = cantidad + ? WHERE usuario_id = ? AND producto_id = ?");
+            $stmt->execute([$cantidad, $usuario_id, $producto_id]);
+        } else {
+            // Insertar nuevo
+            $stmt = $this->conexion->prepare("INSERT INTO carrito (usuario_id, producto_id, cantidad) VALUES (?, ?, ?)");
+            $stmt->execute([$usuario_id, $producto_id, $cantidad]);
+        }
+    }
+    
 }
