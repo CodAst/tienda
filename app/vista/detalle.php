@@ -28,7 +28,7 @@
                     </div>
 
                     <!-- ✅ FORMULARIO CORREGIDO -->
-                    <form method="post" action="../agregar_carrito.php">
+                    <form method="post" action="/tienda/app/agregar_carrito.php">
                         <input type="hidden" name="producto_id" value="<?= $producto['id'] ?>">
                         <label>Cantidad:</label>
                         <input type="number" name="cantidad" value="1" min="1" class="form-control w-25 d-inline">
