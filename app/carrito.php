@@ -62,14 +62,14 @@ $total = 0;
     <?php endif; ?>
 
     <?php
-    // ✅ Eliminar producto del carrito
-    if (isset($_GET['accion']) && $_GET['accion'] === 'eliminar' && isset($_GET['id'])) {
-        $idEliminar = $_GET['id'];
-        unset($_SESSION['carrito'][$idEliminar]);
-        header("Location: carrito.php");
-        exit();
-    }
-    ?>
+// ✅ Eliminar producto del carrito
+if (isset($_GET['accion']) && $_GET['accion'] === 'eliminar' && isset($_GET['id'])) {
+    $idEliminar = $_GET['id'];
+    unset($_SESSION['carrito'][$idEliminar]);
+    header("Location: carrito.php");
+    exit();
+}
+?>
 
 <!-- ✅ Script de alerta + redirección -->
 <script>
@@ -82,5 +82,6 @@ $total = 0;
         });
     });
 </script>
+
 </body>
 </html>
