@@ -6,7 +6,7 @@ require_once "../../admin/config/conexion.php";
 $carrito = $_SESSION['carrito'] ?? [];
 
 if (empty($carrito)) {
-    echo "El carrito está vacío.";
+    echo "<div style='padding:20px'><h3>El carrito está vacío.</h3><a href='tienda.php'>Volver a tienda</a></div>";
     exit;
 }
 
@@ -15,32 +15,40 @@ $conexion = Conexion::conectar();
 try {
     $conexion->beginTransaction();
 
-    // Calcular total
     $total = 0;
     $productoDAO = new ProductoDAO();
 
     foreach ($carrito as $id => $cantidad) {
         $producto = $productoDAO->buscarPorId($id);
+        if (!$producto) {
+            throw new Exception("Producto con ID $id no encontrado.");
+        }
         $total += $producto['precio'] * $cantidad;
     }
 
-    // Insertar compra
+    // Insertar en tabla compra
     $stmt = $conexion->prepare("INSERT INTO compra (total) VALUES (?)");
     $stmt->execute([$total]);
     $compraId = $conexion->lastInsertId();
 
-    // Insertar detalles
-    $stmt = $conexion->prepare("INSERT INTO detalle_compra (compra_id, producto_id, cantidad, precio_unitario) VALUES (?, ?, ?, ?)");
+    // Insertar en tabla detalle_compra
+    $stmtDetalle = $conexion->prepare("INSERT INTO detalle_compra (compra_id, producto_id, cantidad, precio_unitario) VALUES (?, ?, ?, ?)");
+
     foreach ($carrito as $id => $cantidad) {
         $producto = $productoDAO->buscarPorId($id);
-        $stmt->execute([$compraId, $id, $cantidad, $producto['precio']]);
+        $stmtDetalle->execute([$compraId, $id, $cantidad, $producto['precio']]);
     }
 
     $conexion->commit();
     unset($_SESSION['carrito']);
-    echo "<h3>Compra registrada con éxito.</h3><a href='tienda.php'>Volver a tienda</a>";
+
+    echo "<div style='padding:20px'><h3>✅ Compra registrada con éxito.</h3><a href='tienda.php'>Volver a tienda</a></div>";
+
+    // Opcional: redireccionar automáticamente
+    // header("Location: tienda.php");
+    // exit;
 
 } catch (Exception $e) {
     $conexion->rollBack();
-    echo "Error al procesar la compra: " . $e->getMessage();
+    echo "<div style='padding:20px'><strong>Error al procesar la compra:</strong> " . $e->getMessage() . "</div>";
 }

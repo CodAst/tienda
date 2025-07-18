@@ -50,6 +50,56 @@
 
     <!-- Tu archivo JS -->
     <script src="assets/js/funciones.js"></script>
+
+<?php
+session_start();
+require_once __DIR__ . "/../../admin/modelo/ProductoDAO.php";
+$productoDAO = new ProductoDAO();
+$carrito = $_SESSION['carrito'] ?? [];
+$total = 0;
+?>
+
+<!-- 🛒 BOTÓN FLOTANTE -->
+<button id="toggleCarrito" class="btn btn-warning" style="position: fixed; right: 20px; bottom: 90px; z-index: 1001;">
+    🛒 Ver Carrito
+</button>
+
+<!-- 🛍 CARRITO FLOTANTE -->
+<div id="carritoFlotante" style="position: fixed; right: 20px; bottom: 20px; width: 320px; background: white; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1000; padding: 15px; display: none;">
+    <h5>🛍 Tu carrito</h5>
+    <ul class="list-group mb-3">
+        <?php if (empty($carrito)): ?>
+            <li class="list-group-item">Tu carrito está vacío.</li>
+        <?php else: ?>
+            <?php foreach ($carrito as $id => $cantidad): 
+                $producto = $productoDAO->buscarPorId($id);
+                $subtotal = $producto['precio'] * $cantidad;
+                $total += $subtotal;
+            ?>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <?= htmlspecialchars($producto['nombre']) ?> x<?= $cantidad ?>
+                    <span>$<?= number_format($subtotal, 2) ?></span>
+                </li>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </ul>
+    <p class="fw-bold">Total: $<?= number_format($total, 2) ?></p>
+    <button class="btn btn-success w-100" onclick="pagar()">Pagar</button>
+</div>
+
+<script>
+    const toggleBtn = document.getElementById("toggleCarrito");
+    const carrito = document.getElementById("carritoFlotante");
+
+    toggleBtn.addEventListener("click", () => {
+        carrito.style.display = carrito.style.display === "none" ? "block" : "none";
+    });
+
+    function pagar() {
+        alert("✅ ¡Producto pagado con éxito!");
+    }
+</script>
+
 </body>
 
 </html>

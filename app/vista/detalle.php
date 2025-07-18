@@ -25,15 +25,15 @@
                         <p class="text-muted">Categoría: <?= htmlspecialchars($producto['categoria']) ?></p>
                         <h4 class="text-success">$<?= number_format($producto['precio'], 2) ?></h4>
                         <p><strong>Descripción:</strong> <?= $producto['descripcion'] ?></p>
-                        <p class="card-text mt-3">Este producto es parte del catálogo de nuestra tienda virtual. Puedes contactarnos para más detalles o realizar tu pedido.</p>
                     </div>
 
-                    <form method="post" action="agregar_carrito.php">
-    <input type="hidden" name="producto_id" value="<?= $producto['id'] ?>">
-    <label for="cantidad">Cantidad:</label>
-    <input type="number" name="cantidad" value="1" min="1">
-    <button type="submit">Agregar al carrito</button>
-</form>
+                    <!-- ✅ FORMULARIO CORREGIDO -->
+                    <form method="post" action="/tienda/app/agregar_carrito.php">
+                        <input type="hidden" name="producto_id" value="<?= $producto['id'] ?>">
+                        <label>Cantidad:</label>
+                        <input type="number" name="cantidad" value="1" min="1" class="form-control w-25 d-inline">
+                        <button type="submit" class="btn btn-primary mt-2">🛒 Agregar al carrito</button>
+                    </form>
                 </div>
             </div>
         </div>
