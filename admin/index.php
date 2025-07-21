@@ -22,6 +22,7 @@ if (!in_array($action, $publicas) && !isset($_SESSION['usuario'])) {
 }
 
 
+
 switch ($action) {
     case 'login':
         $auth = new AuthController();

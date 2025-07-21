@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <title>Listado de Productos</title>
     <link rel="stylesheet" href="css/estilos.css">
-    <style>
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
-        img { width: 80px; height: auto; }
-        a.op { margin: 0 5px; text-decoration: none; }
-    </style>
 </head>
 <body>
-    <h1>Productos Registrados</h1>
+
+    <div class="top-bar">
+        <h1>Productos Registrados</h1>
+        <a href="<?= $_SERVER['PHP_SELF'] ?>/cerrar_sesion.php" class="cerrar-sesion">Cerrar sesión</a>
+    </div>
+
     <a href="index.php?action=registrar">Registrar Nuevo Producto</a><br><br>
 
     <table>
@@ -22,7 +21,7 @@
                 <th>Foto</th>
                 <th>Nombre</th>
                 <th>Precio</th>
-                <th>Descripción</th> <!-- corregido -->
+                <th>Descripción</th>
                 <th>Categoría</th>
                 <th>Operaciones</th>
             </tr>
@@ -40,7 +39,7 @@
                     </td>
                     <td><?= htmlspecialchars($prod['nombre']) ?></td>
                     <td>$<?= number_format($prod['precio'], 2) ?></td>
-                    <td><?= htmlspecialchars($prod['descripcion']) ?></td> <!-- corregido -->
+                    <td><?= htmlspecialchars($prod['descripcion']) ?></td>
                     <td><?= htmlspecialchars($prod['categoria']) ?></td>
                     <td>
                         <a class="op" href="index.php?action=editar&id=<?= $prod['id'] ?>">✏️ Editar</a><br>
@@ -51,5 +50,6 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+
 </body>
 </html>
