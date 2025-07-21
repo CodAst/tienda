@@ -2,24 +2,28 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <title>Iniciar Sesión | ASA SHOP</title>
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
-    <h1>Acceso a Administración</h1>
-
-    <?php if (isset($error)): ?>
-        <p style="color:red"><?= htmlspecialchars($error) ?></p>
-    <?php endif; ?>
-
-    <form method="POST" action="index.php?action=login">
-        <label>Correo:</label><br>
-        <input type="email" name="correo" required><br><br>
-
-        <label>Contraseña:</label><br>
-        <input type="password" name="contrasena" required><br><br>
-
-        <input type="submit" value="Ingresar">
-    </form>
+    <div class="container">
+        <div class="left-panel">
+            <h1>ASA SHOP</h1>
+            <p>ASA SHOP te ayuda a gestionar productos y categorías con facilidad.</p>
+        </div>
+        <div class="right-panel">
+            <?php if (isset($error)): ?>
+                <div class="error"><?= htmlspecialchars($error) ?></div>
+            <?php endif; ?>
+            <form method="POST" action="index.php?action=login">
+                <input type="email" name="correo" placeholder="Correo electrónico" required>
+                <input type="password" name="contrasena" placeholder="Contraseña" required>
+                <button type="submit">Iniciar sesión</button>
+                <a href="#">¿Olvidaste tu contraseña?</a>
+            </form>
+            <hr>
+            <a href="../index.php" class="btn btn-secondary mb-3">Regresar a la tienda</a>
+        </div>
+    </div>
 </body>
 </html>

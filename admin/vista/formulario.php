@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <title>Registrar Producto</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
+<body class="form-container">
+    <div class="form-card">
+        <h1 class="titulo">Registrar Producto</h1>
 
-<body>
-    <h1>Registrar Producto</h1>
+        <form method="POST" action="index.php?action=registrar" enctype="multipart/form-data">
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" required>
 
-    <form method="POST" action="index.php?action=registrar" enctype="multipart/form-data">
-        <label>Nombre:</label><br>
-        <input type="text" name="nombre" required><br><br>
+            <label for="precio">Precio:</label>
+            <input type="number" name="precio" id="precio" step="0.01" required>
 
-        <label>Precio:</label><br>
-        <input type="number" name="precio" step="0.01" required><br><br>
+            <label for="descripcion">Descripción:</label>
+            <textarea name="descripcion" id="descripcion" rows="4" cols="50" required><?= isset($producto) ? $producto['descripcion'] : '' ?></textarea>
 
-        <div>
-            <label for="descripcion">Descripción:</label><br>
-            <textarea name="descripcion" rows="4" cols="50"><?= isset($producto) ? $producto['descripcion'] : '' ?></textarea>
-        </div>
-        
-        <label>Foto del producto:</label><br>
-        <input type="file" name="foto" accept="image/*"><br><br>
+            <label for="foto">Foto del producto:</label>
+            <input type="file" name="foto" id="foto" accept="image/*">
 
-        <label>Categoría:</label><br>
-        <select name="categoria_id" required>
-            <option value="">Seleccione una categoría</option>
-            <?php foreach ($categorias as $cat): ?>
-                <option value="<?= $cat['id'] ?>"><?= htmlspecialchars($cat['nombre']) ?></option>
-            <?php endforeach; ?>
-        </select><br><br>
+            <label for="categoria_id">Categoría:</label>
+            <select name="categoria_id" id="categoria_id" required>
+                <option value="">Seleccione una categoría</option>
+                <option value="1">Tecnología</option>
+                <option value="2">Moda</option>
+                <option value="3">Libros</option>
+                <option value="4">Hogar</option>
+                <option value="5">Belleza</option>
+            </select>
 
-        <input type="submit" value="Guardar Producto">
-    </form>
+            <button type="submit" class="btn">Guardar Producto</button>
+        </form>
+    </div>
 </body>
-
 </html>

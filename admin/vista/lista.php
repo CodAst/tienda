@@ -43,7 +43,7 @@
                     <td><?= htmlspecialchars($prod['descripcion']) ?></td> <!-- corregido -->
                     <td><?= htmlspecialchars($prod['categoria']) ?></td>
                     <td>
-                        <a class="op" href="index.php?action=editar&id=<?= $prod['id'] ?>">✏️ Editar</a>
+                        <a class="op" href="index.php?action=editar&id=<?= $prod['id'] ?>">✏️ Editar</a><br>
                         <a class="op" href="index.php?action=eliminar&id=<?= $prod['id'] ?>"
                            onclick="return confirm('¿Estás seguro de eliminar este producto?');">🗑️ Eliminar</a>
                     </td>

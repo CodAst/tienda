@@ -48,3 +48,4 @@ switch ($action) {
         header("Location: index.php?action=login");
         break;
 }
+
