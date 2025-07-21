@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// ✅ Ruta corregida usando __DIR__
 require_once __DIR__ . '/../admin/modelo/ProductoDAO.php';
 
 $productoDAO = new ProductoDAO();
@@ -54,7 +53,14 @@ $total = 0;
             </tbody>
         </table>
 
-        <h3 class="mt-4">Total: $<?= number_format($total, 2) ?></h3>
+        <?php
+            $iva = $total * 0.15;
+            $totalConIVA = $total + $iva;
+        ?>
+
+        <h4 class="mt-3">Subtotal: $<?= number_format($total, 2) ?></h4>
+        <h5>IVA (15%): $<?= number_format($iva, 2) ?></h5>
+        <h3 class="mt-2 text-success">Total a pagar: $<?= number_format($totalConIVA, 2) ?></h3>
 
         <form method="post" action="procesar_compra.php">
             <button type="submit" class="btn btn-success">Finalizar Compra</button>
@@ -62,26 +68,26 @@ $total = 0;
     <?php endif; ?>
 
     <?php
-// ✅ Eliminar producto del carrito
-if (isset($_GET['accion']) && $_GET['accion'] === 'eliminar' && isset($_GET['id'])) {
-    $idEliminar = $_GET['id'];
-    unset($_SESSION['carrito'][$idEliminar]);
-    header("Location: carrito.php");
-    exit();
-}
-?>
+    if (isset($_GET['accion']) && $_GET['accion'] === 'eliminar' && isset($_GET['id'])) {
+        $idEliminar = $_GET['id'];
+        unset($_SESSION['carrito'][$idEliminar]);
+        header("Location: carrito.php");
+        exit();
+    }
+    ?>
 
-<!-- ✅ Script de alerta + redirección -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const btn = document.querySelector("form button[type='submit']");
-        btn.addEventListener("click", function (e) {
-            e.preventDefault();
-            alert("📦 Tu pedido ha sido registrado y está pendiente de pago.");
-            window.location.href="../index.php";
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const btn = document.querySelector("form button[type='submit']");
+            if (btn) {
+                btn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    alert("📦 Tu pedido ha sido registrado y está pendiente de pago.");
+                    window.location.href="../index.php";
+                });
+            }
         });
-    });
-</script>
+    </script>
 
 </body>
 </html>

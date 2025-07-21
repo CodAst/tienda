@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Listado de Productos</title>
+    <link rel="stylesheet" href="css/estilos.css">
     <style>
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }

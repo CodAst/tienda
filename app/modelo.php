@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="css/estilos.css">
 <?php
 require_once __DIR__ . "/../config/conexion.php";
 

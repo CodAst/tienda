@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Producto</title>
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
     <h1>Editar Producto</h1>

@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="css/estilos.css">
 <?php
 define('APP_PATH', dirname(__DIR__)); // → C:\xampp\htdocs\tienda
 

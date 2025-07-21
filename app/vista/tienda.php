@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Tienda Virtual</title>
+    <link rel="stylesheet" href="css/estilos.css">
     <!-- CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Tu archivo CSS -->
