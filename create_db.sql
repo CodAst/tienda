@@ -30,6 +30,7 @@ INSERT INTO categoria (nombre) VALUES
 ('Tecnología'),
 ('Moda'),
 ('Hogar'),
+('Belleza'),
 ('Libros');
 
 -- Contraseña: 123456 (usaremos https://onlinephp.io/password-hash)

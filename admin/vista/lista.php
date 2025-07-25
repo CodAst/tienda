@@ -9,7 +9,9 @@
 
     <div class="top-bar">
         <h1>Productos Registrados</h1>
-        <a href="<?= $_SERVER['PHP_SELF'] ?>/cerrar_sesion.php" class="cerrar-sesion">Cerrar sesión</a>
+        <div class="contenedor-boton">
+            <a href="../index.php" class="btn-custom">Regresar a la tienda</a>
+        </div>
     </div>
 
     <a href="index.php?action=registrar">Registrar Nuevo Producto</a><br><br>

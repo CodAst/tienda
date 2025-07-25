@@ -9,7 +9,7 @@
     <div class="form-card">
         <h1 class="titulo">Editar Producto</h1>
 
-        <form method="POST" action="index.php?action=actualizar" enctype="multipart/form-data">
+        <form method="POST" action="index.php?action=editar" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= htmlspecialchars($producto['id']) ?>">
 
             <label for="nombre">Nombre:</label>
