@@ -1,8 +1,24 @@
-<link rel="stylesheet" href="css/estilos.css">
+<<?php
+session_start();
+if (!isset($_SESSION['admin'])) {
+    header('Location: login.php');
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel de Admin - ASA Shop</title>
+</head>
+</html>
+
 <?php
 define('APP_PATH', dirname(__DIR__)); // → C:\xampp\htdocs\tienda
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 require_once APP_PATH . "/config/conexion.php";
 require_once APP_PATH . "/admin/controlador/AuthController.php";

@@ -64,4 +64,3 @@ CREATE TABLE carrito (
     session_id VARCHAR(255),
     FOREIGN KEY (producto_id) REFERENCES productos(id)
 );
-

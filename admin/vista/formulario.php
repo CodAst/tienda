@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrar Producto</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="/tienda/assets/css/estilos.css">
 </head>
 <body class="form-container">
     <div class="form-card">

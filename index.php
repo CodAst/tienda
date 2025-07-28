@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <title>Tienda Virtual</title>
+  <link rel="stylesheet" href="/tienda/assets/css/estilos.css">
+</head>
+
 <?php
 require_once "app/controlador.php";
 

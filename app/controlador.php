@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/estilos.css">
+<link rel="stylesheet" href="/tienda/assets/css/estilos.css">
 <?php
 require_once "modelo.php";
 
@@ -16,6 +16,7 @@ class Controller
         }
 
         include "vista/tienda.php";
+        
     }
 
     public function detalle($id)
@@ -38,4 +39,3 @@ class Controller
         include "vista/detalle.php";
     }
 }
-
